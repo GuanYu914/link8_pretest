@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 4em;
+  background-color: #fff;
+  z-index: 1;
+  box-shadow: 0px 2px 2px #ccc;
+}
+
+.header .logo {
+  width: 3em;
+  height: 3em;
+  margin-left: 1em;
+  background-color: #ccc;
+  border-radius: 1em;
+}
+
+.header .nav {
+  display: flex;
+  /* 在 flex 中靠右對齊 */
+  margin-left: auto;
+}
+
+.nav .page {
+  margin-right: 3em;
+  text-decoration: none;
+  color:black
+}
+
+.content {
+  margin-top: 4.8em;
+}
+
+/* 螢幕寬度小於 768px */
+@media screen and (max-width: 768px) {
+  /* 使用絕對定位控制 mobile 選單 */
+  .header .nav {
+    display: block;
+    position: absolute;
+    top: 4em;
+    right: -100%;
+    width: 40vw;
+    height: 100vh;
+    background-color: #ccc;
+    z-index: 1;    
+    padding: 2em;
+    transition: all 0.5s;
+  }
+
+  /* 將 mobile 選單的項目垂直排列 */
+  .nav .page {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8em;
+    border-bottom: 0.1em solid black;
+    margin-right: 0;
+    margin-bottom: 1em;
+  }
+
+  /* 用來控制 mobile 選單的 input */
+  #mobile-menu {
+    /* 在平板寬度底下隱藏 */
+    position: absolute;
+    opacity: 0;
+    display: hidden;
+    z-index: -2;
+  }
+
+  /* 用來控制 mobile 選單的 input 被設置為 checked, 秀出手機端的選單介面 */
+  #mobile-menu:checked ~ .header .nav{
+    right: 0;
+  }
+
+  /* 使用 label 當做用戶互動的漢堡選單 */
+  .mobile-menu-btn {
+    position: relative;
+    width: 3em;
+    height: 3em;
+    margin-right: 1em;
+  }
+
+  /* 隱藏 label 內 span 的字體 */
+  .mobile-menu-btn span{
+    display: block;
+    /* 隱藏選單字眼 */
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* 使用偽元素做漢堡 icon */
+  .mobile-menu-btn::before {
+    content: '';
+    position: absolute;
+    left: 0.4em;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 0.2em;
+    width: 2.2em;
+    border-radius: 0.2em;
+    background-color: black;
+    box-shadow: 0 0.8em 0 black,
+                0 -0.8em 0 black;
+  }
+}
+
+/* 螢幕寬度大於 768px */
+@media screen and (min-width: 768px) {
+  #mobile-menu, .mobile-menu-btn {
+    display: none;
+  }
+}
